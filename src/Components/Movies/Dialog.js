@@ -40,7 +40,7 @@ export default class extends Component {
                     <DialogTitle >Create Movie</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            Create Alfred
+                            Create a New Movie here!
                         </DialogContentText>
                         <Form 
                             genres={genres} 
