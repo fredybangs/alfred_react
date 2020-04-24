@@ -1,7 +1,6 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import {Paper, Tabs, Tab} from '@material-ui/core';
+
 
  export default ({genres, category, onSelect}) => {
      
@@ -9,10 +8,10 @@ import Tab from '@material-ui/core/Tab';
 
      const onIndexSelect = (event, index) => onSelect(index === 0 ? '' : genres[index -1])
     return(
-        <Paper style={{marginTop: 10}}>
+        <Paper style={{marginTop: 70}}>
             <Tabs
                 value={index}
-                textColor="primary"
+                textColor="secondary"
                 variant="scrollable"
                 onChange={onIndexSelect}
             >

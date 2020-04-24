@@ -1,41 +1,53 @@
 import React, { Fragment }  from 'react';
-import { Grid, Paper, Typography, List } from "@material-ui/core";
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItem from '@material-ui/core/ListItem';
+import Form from './Form'
+import { Grid, Paper, Typography, List, CardMedia, ListItemSecondaryAction, ListItemText, ListItem, withStyles } from "@material-ui/core";
+import Pic from './img-13.jpg'
+import Option from "./Option"
 
-
-
-const styles = {
-    Paper: {
+const styles = theme => ({
+    paper: {
         padding: 20,
-        margin: 10,
+        marginTop: 1,
         height: 600,
         overflowY: 'auto'
+    },
+    item:{
+        [theme.breakpoints.down("xs")] : {
+            height: '35 %'
+        }
     }
     
-}
-    
-export default ({movies,
+})
+
+export default withStyles(styles)(
+({movies,
+    classes,
     category,
     onSelect,
+    genres,
+    onDelete,
+    editMode,
+    onSelectEdit,
+    onEdit,
+    movie,
     movie:{
         title = "Welcome El Rey!",
         id,
-        imgUrl,
-        // imgUrl = <img src={Pic} className="center" border="10" height="400" width="300" alt=""/>,
+        // imgUrl,
+        imgUrl = <img src={Pic} border="5%" height="50%" width="40%" alt=""/>,
         date,
         price,
         description = "Please select a from the left pane to view it details..."
     }
 }) =>
-     <Grid container>
-         <Grid item xs={12} sm={6}>
-            <Paper style={styles.Paper} >
+     <Grid container >
+         <Grid item className={classes.item} xs={12} sm={6}>
+            <Paper className={classes.paper} >
                 {movies.map(([genres, movies]) => 
                 !category || category === genres
                 ?
                 <Fragment key={genres}>
-                    <Typography variant="h5" style={{textTransform: "capitalize"}} >
+                    <Typography variant="h5" color="secondary" style={{textTransform: "capitalize"}} >
                         {genres}
                     </Typography>
                     <List component="ul">
@@ -46,6 +58,9 @@ export default ({movies,
                             key={id}
                         >
                             <ListItemText primary={title} />
+                            <ListItemSecondaryAction>
+                                <Option onSelectEdit={onSelectEdit} onDelete={onDelete} id={id}/>
+                            </ListItemSecondaryAction>
                         </ListItem>
                         )}
                     </List>
@@ -54,36 +69,51 @@ export default ({movies,
                 )}
             </Paper>
          </Grid>
-         <Grid item xs={12} sm={6}>
-            <Paper style={styles.Paper}>
-                <Paper style={{margin:10}}>
-                    <Grid item xs={12} sm container>
-                        <Grid item xs container direction="column" style={{padding:10}} spacing={2}>
-                            <Grid item xs>
-                                <Typography gutterBottom variant="h2">
-                                    {title}
-                                </Typography>
-                                <Typography style={{paddingBottom:10}}>
-                                    PICTURE HERE
-                                </Typography>
-                                <Typography variant="hr" color="textSecondary">
-                                    {date}
-                                </Typography>
-                                <Typography variant="body2" color="textSecondary">
-                                    {description}
-                                </Typography>
+         <Grid item className={classes.item} xs={12} sm={6}>
+            <Paper className={classes.paper}>
+                {editMode
+                    ?
+                    <Form
+                        genres={genres}
+                        onSubmit={onEdit}
+                        movie={movie}
+                    />
+                    :
+                    <Fragment>
+                        <Paper style={{margin:1}}>
+                            <Grid item xs={12} sm container>
+                                <Grid item xs container direction="column" style={{padding:20}} spacing={2}>
+                                    <Grid item xs>
+                                        <Typography color="secondary" gutterBottom variant="h2">
+                                            {title}
+                                        </Typography>
+                                        {/* <Typography style={{paddingBottom:10}}>
+                                            PICTURE HERE
+                                        </Typography> */}
+                                        <CardMedia>
+                                            {imgUrl}
+                                        </CardMedia>
+                                        <Typography variant="hr" color="textSecondary">
+                                            {date}
+                                        </Typography>
+                                        <Typography variant="body2" color="textSecondary">
+                                            {description}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item>
+                                        <Typography variant="body2" style={{ cursor: 'pointer' }}>
+                                            More
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                                <Grid item>
+                                    <Typography style={{padding: 30}} variant="h5">{price}</Typography>
+                                </Grid>
                             </Grid>
-                            <Grid item>
-                                <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                                    More
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                        <Grid item>
-                            <Typography style={{padding: 30}} variant="h5">{price}</Typography>
-                        </Grid>
-                    </Grid>
-                </Paper>
+                        </Paper>
+                    </Fragment>
+                }
             </Paper>
          </Grid>
      </Grid>
+)
