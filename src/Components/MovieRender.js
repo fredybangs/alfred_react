@@ -18,7 +18,7 @@ export default class MovieRender extends Component {
       ...movies, [genres] : []
     }), {})
 
-    return (
+     return (
       Object.entries(
         this.state.movies.reduce((movies, movie) => {
           const {genres} = movie
@@ -72,7 +72,6 @@ export default class MovieRender extends Component {
       movie
     }))
   
-
   render(){
     const movies = this.getMoviesByGenre(),
     {category, movie, editMode} = this.state

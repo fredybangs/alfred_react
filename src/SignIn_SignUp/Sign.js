@@ -5,11 +5,17 @@ import MovieRender from '../Components/MovieRender'
 import ForgotPassword from './ForgotPassword/forgotPwdInput'
 import Index from '../MainPage/Home'
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import { syncHistoryWithStore } from 'react-router-redux'
+import store from '../store'
+import { createBrowserHistory } from 'history';
+
+
+const history = syncHistoryWithStore(createBrowserHistory(), store);
 
 
 function Sign() {
     return(
-        <Router>
+        <Router history={history}>
             <div>
                 <Switch>
                     <Route path="/" exact component={Index} />            

@@ -10,8 +10,10 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "@types/react-router-redux": "^5.0.18",
     "final-form": "^4.19.1",
     "formik": "^2.1.4",
+    "history": "^4.10.1",
     "jss": "^10.1.1",
     "material-table": "^1.57.2",
     "material-ui-dropzone": "^2.4.9",
@@ -19,9 +21,12 @@
     "react-dom": "^16.13.1",
     "react-final-form": "^6.4.0",
     "react-redux": "^7.2.0",
+    "react-router": "^5.2.0",
     "react-router-dom": "^5.1.2",
+    "react-router-redux": "^4.0.8",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
+    "redux-form": "^8.3.5",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "responsive-img-material-ui": "^2.2.0",
@@ -33,7 +38,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "gulp": "gulp"
   },
   "eslintConfig": {
     "extends": "react-app"
